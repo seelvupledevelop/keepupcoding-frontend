@@ -1,0 +1,47 @@
+# =============================================================================
+# KeepUpCoding frontend — standalone static deployment (single service + Caddy)
+# Public surface: ONLY Caddy (80/443). The nginx frontend stays private.
+# =============================================================================
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp" # HTTP/3
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+      API_DOMAIN: ${API_DOMAIN:-}
+    networks: [public]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:80"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # --- Static frontend (Soft UI, no build step) ---
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks: [public]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8088/index.html"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+networks:
+  public:
+
+volumes:
+  caddy_data:
+  caddy_config:

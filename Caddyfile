@@ -1,0 +1,56 @@
+# =============================================================================
+# KeepUpCoding frontend — Caddy reverse proxy (standalone frontend repo)
+# Automatic HTTPS via Let's Encrypt; only Caddy exposes 80/443.
+#
+# DNS: point an A/AAAA record for $APP_DOMAIN at the VPS before first start —
+# Caddy obtains its certificate automatically on first request.
+# =============================================================================
+
+# --- Public frontend ---
+{$APP_DOMAIN} {
+	tls {$ACME_EMAIL}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+
+	# Cache static assets one hour; never cache the HTML shell
+	@static path /js/* /css/* /img/* /locales/* /fonts/* /assets/*
+	header @static Cache-Control "public, max-age=3600"
+	header / Cache-Control "no-store"
+
+	encode zstd gzip
+
+	reverse_proxy frontend:8088
+}
+
+# --- Optional API on its own subdomain (keepup-api.<root>) ---
+# Only takes effect when API_DOMAIN is set in .env; remove the block or leave
+# API_DOMAIN empty otherwise.
+{$API_DOMAIN} {
+	tls {$ACME_EMAIL}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		-Server
+	}
+
+	# Request size limit (protects the gateway from abuse)
+	request_body {
+		max_size 8MB
+	}
+
+	# SSE passthrough: no buffering, no compression on event streams
+	reverse_proxy api:8080 {
+		flush_interval -1
+		transport http {
+			response_header_timeout 10m
+		}
+	}
+}

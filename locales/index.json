@@ -1,0 +1,5 @@
+{
+  "supported": ["en", "uk", "ru", "zh-CN", "de", "fr", "es", "pt", "it", "nl", "hu", "tr", "pl", "ar", "hi", "ja", "ko"],
+  "default": "en",
+  "note": "All LANGUAGES-menu locales ship nav/UI coverage; deep page copy falls back to English per docs/I18N.md. Legal translations require counsel review before publication (docs/LEGAL_REVIEW_CHECKLIST.md)."
+}

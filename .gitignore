@@ -1,0 +1,15 @@
+# Secrets and environment
+.env
+.env.*
+
+# Docker
+*.tar.gz
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local cruft
+shadcn-admin.zip

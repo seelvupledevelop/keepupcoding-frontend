@@ -1,0 +1,413 @@
+/* ==========================================
+ * Soft UI Design System Core Stylesheet (Clean White & Deep Charcoal Edition)
+ * Crisp White Acrylic Surfaces, Ethereal Gradients & High-Contrast Typography
+ * ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html, body {
+  font-family: var(--font-sans);
+  background-color: #f8f9fa;
+  color: #252f40;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.code-font {
+  font-family: var(--font-mono);
+}
+
+/* Crisp Frosted White Surfaces */
+.soft-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 1rem;
+  box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Gradients */
+.bg-gradient-primary {
+  background-image: linear-gradient(310deg, #7928CA 0%, #FF0080 100%);
+}
+.bg-gradient-info {
+  background-image: linear-gradient(310deg, #2152FF 0%, #21D4FD 100%);
+}
+.bg-gradient-success {
+  background-image: linear-gradient(310deg, #17ad37 0%, #98ec2d 100%);
+}
+.bg-gradient-warning {
+  background-image: linear-gradient(310deg, #f53939 0%, #fbcf33 100%);
+}
+.bg-gradient-dark {
+  background-image: linear-gradient(310deg, #141727 0%, #3A416F 100%);
+}
+
+.text-gradient-primary {
+  background: linear-gradient(310deg, #7928CA 0%, #FF0080 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons */
+.btn-soft-primary {
+  background-image: linear-gradient(310deg, #7928CA 0%, #FF0080 100%);
+  color: #ffffff !important;
+  font-weight: 800;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px 0 rgba(233, 30, 99, 0.35);
+}
+.btn-soft-primary:hover {
+  box-shadow: 0 6px 20px 0 rgba(233, 30, 99, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-soft-white {
+  background: #ffffff;
+  color: #252f40;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+.btn-soft-white:hover {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+/* Infinite Horizontal Marquee for Model Engines */
+.marquee-wrapper {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 0.75rem;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.marquee-content {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: scroll-left 28s linear infinite;
+}
+
+.marquee-wrapper:hover .marquee-content,
+.marquee-wrapper:active .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 0.75rem));
+  }
+}
+
+/* Flowing Gradient for Navbar Menu Container */
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-flowing-menu {
+  background: linear-gradient(135deg, rgba(121, 40, 202, 0.08), rgba(255, 0, 128, 0.08), rgba(33, 212, 253, 0.08), rgba(121, 40, 202, 0.08));
+  background-size: 300% 300%;
+  animation: gradient-flow 10s ease infinite;
+}
+
+/* High-Contrast Black / Deep Charcoal Typography for Top Nav */
+.top-nav-btn {
+  color: #344767 !important;
+  font-weight: 700 !important;
+  transition: all 0.2s ease;
+  outline: none !important;
+  border: none;
+  background: transparent;
+}
+
+.top-nav-btn:hover {
+  color: #0f172a !important;
+  transform: translateY(-1px);
+}
+
+.top-nav-btn.active {
+  color: #0f172a !important; /* Keep it bold deep black on click! */
+  font-weight: 850 !important;
+}
+
+.top-nav-btn i {
+  transition: color 0.2s ease;
+}
+
+/* High-Contrast Black / Deep Charcoal Typography for Sidebar */
+.side-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  border-radius: 0.85rem !important;
+  color: #344767 !important;
+  font-weight: 700 !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-align: left;
+  border: none;
+  background: transparent;
+  outline: none !important;
+  box-sizing: border-box;
+}
+
+.side-btn:hover {
+  color: #0f172a !important;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.side-btn.active {
+  background-image: linear-gradient(310deg, #7928CA 0%, #FF0080 100%) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  border-radius: 0.85rem !important;
+  box-shadow: 0 4px 12px 0 rgba(233, 30, 99, 0.35) !important;
+  transform: none !important;
+}
+
+.side-btn.active i {
+  color: #ffffff !important;
+}
+
+/* Global Typography & Input Controls */
+h1, h2, h3, h4, h5, h6 {
+  color: #252f40;
+  font-weight: 800;
+}
+
+input, select, textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Table High Contrast */
+table {
+  color: #252f40 !important;
+}
+
+thead th {
+  color: #344767 !important;
+  font-weight: 800 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+tbody tr {
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+tbody tr:hover {
+  background-color: rgba(241, 245, 249, 0.6) !important;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================================
+   RESPONSIVE ENHANCEMENTS (Audited via NVIDIA Nemotron)
+   ======================================================== */
+@media (max-width: 640px) {
+  .hero-graffiti-mobile {
+    max-height: 4rem;
+    width: auto;
+    object-fit: contain;
+  }
+  .soft-card {
+    padding: 0.85rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-artwork-desktop {
+    display: block;
+    position: absolute;
+    left: -2.5rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(-3deg);
+    width: 9rem;
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+/* ========================================================
+   INSPIRA UI 3D FLIP CARD SYSTEM
+   (https://inspira-ui.com/docs/en/components/cards/flip-card)
+   ======================================================== */
+.inspira-flip-card {
+  perspective: 1400px;
+  min-height: 640px;
+  height: 640px;
+  cursor: pointer;
+}
+
+.inspira-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-style: preserve-3d;
+  border-radius: 1.75rem;
+}
+
+/* Desktop: Smooth Hover Flip on Pointer Devices */
+@media (hover: hover) and (pointer: fine) {
+  .inspira-flip-card:hover .inspira-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Smartphone / Touch: Click-to-Flip Controlled State */
+.inspira-flip-card.is-flipped .inspira-flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* Tier & Package Flip Card (Landing Page) */
+.inspira-tier-flip-card {
+  perspective: 1400px;
+  min-height: 410px;
+  height: 410px;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .inspira-tier-flip-card:hover .inspira-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.inspira-tier-flip-card.is-flipped .inspira-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.inspira-flip-front,
+.inspira-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  border-radius: 1.75rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.inspira-flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Metric Box Safe Spacing & Containment */
+.inspira-metric-box {
+  padding: 0.875rem 1rem;
+  border-radius: 1rem;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.inspira-metric-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 900;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.inspira-scroll-y {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217, 70, 239, 0.5) transparent;
+}
+.inspira-scroll-y::-webkit-scrollbar {
+  width: 5px;
+}
+.inspira-scroll-y::-webkit-scrollbar-thumb {
+  background: rgba(217, 70, 239, 0.5);
+  border-radius: 9999px;
+}
+
+/* ========================================================
+   RESPONSIVE SMARTPHONE STYLING (Simple Clean Cards)
+   ======================================================== */
+@media (max-width: 767.98px) {
+  /* Simple clean cards without sticky stack or rotation on mobile */
+  .inspira-tier-flip-card {
+    min-height: 380px;
+    height: 380px;
+    perspective: none !important;
+  }
+  
+  .inspira-tier-flip-card .inspira-flip-inner {
+    transform: none !important;
+    transform-style: flat !important;
+  }
+
+  .inspira-tier-flip-card .inspira-flip-back {
+    display: none !important;
+  }
+
+  .inspira-tier-flip-card .inspira-flip-front {
+    position: relative !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    border-radius: 1.75rem;
+  }
+}

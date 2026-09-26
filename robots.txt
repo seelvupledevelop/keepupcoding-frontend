@@ -1,0 +1,16 @@
+# KeepUpCoding AI Gateway — robots.txt
+# Public pages are crawlable; app sections require login (they redirect).
+
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /css/
+
+# Authenticated areas must not be indexed (they 401/redirect server-side too)
+Disallow: /api/
+Disallow: /v1/
+Disallow: /webhooks/
+Disallow: /internal-admin/
+Disallow: /metrics
+
+Sitemap: https://app.example.com/sitemap.xml
